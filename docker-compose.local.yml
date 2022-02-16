@@ -14,7 +14,6 @@ services:
     restart: always
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
     ports:
       - 58802:80
 

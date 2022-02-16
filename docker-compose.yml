@@ -29,8 +29,6 @@ services:
       - db
       - redis
     build: ./public
-    ports:
-      - 3001:3001
 
 volumes:
   db_data:
