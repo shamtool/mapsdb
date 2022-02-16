@@ -2,17 +2,17 @@ version: "3"
 
 services:
   db:
-    image: mariadb
+    image: bitnami/mariadb:10.6
     volumes:
       - ./db/sql-init:/docker-entrypoint-initdb.d
-      - db_data:/var/lib/mysql
+      - db_data:/bitnami/mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
-      MYSQL_DATABASE: mapsdb
+      MARIADB_ROOT_PASSWORD: ${DB_PASS}
+      MARIADB_DATABASE: mapsdb
 
   redis:
-    image: redis:bullseye
+    image: redis:6.2-bullseye
     command: redis-server --requirepass ${REDIS_PASS}
     volumes:
       - redis_data:/var/lib/redis
