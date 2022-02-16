@@ -1,0 +1,27 @@
+version: "3"
+
+# Expose ports for debugging
+
+services:
+  db:
+    ports:
+      - 58801:3306
+
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - db
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASS}
+    ports:
+      - 58802:80
+
+  redis:
+    ports:
+      - 58803:6379
+
+  public:
+    ports:
+      - 58804:3001

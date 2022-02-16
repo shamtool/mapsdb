@@ -1,0 +1,5 @@
+# This network has to be created by yourself, compose won't do it for you.
+networks:
+  default:
+    external: true
+    name: mapsdbapi
