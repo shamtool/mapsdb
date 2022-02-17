@@ -1,5 +1,13 @@
+services:
+  public:
+    networks:
+      # Join the external mapsdb network and expose a unique alias for external
+      # use as the hostname.
+      mapsdbapi:
+        aliases:
+          - mapsdbapi_public
+
 # This network has to be created by yourself, compose won't do it for you.
 networks:
-  default:
+  mapsdbapi:
     external: true
-    name: mapsdbapi
