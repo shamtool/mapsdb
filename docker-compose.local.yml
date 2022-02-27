@@ -22,5 +22,11 @@ services:
       - 58803:6379
 
   public:
+    build:
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./public:/usr/app
+      - /usr/app/node_modules
     ports:
       - 58804:3001
+      - 9229:9229

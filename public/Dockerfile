@@ -15,6 +15,7 @@ RUN pnpm prune --production
 
 FROM node:16-bullseye-slim as runner
 ENV NODE_ENV production
+WORKDIR /usr/app
 
 # Copy necessary build ouputs
 COPY --from=builder /usr/app/package.json ./package.json
