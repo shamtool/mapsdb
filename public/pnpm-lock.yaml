@@ -20,6 +20,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   jest: ^27.5.1
   prettier: ^2.5.1
+  redis: ^3
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.5.4
@@ -34,8 +35,9 @@ specifiers:
 dependencies:
   '@nestjs/common': 8.3.1_0a8b9973a45cbeaad6b0063efdcaad84
   '@nestjs/core': 8.3.1_10c1cfb4f19ab5d44be94194b642f486
-  '@nestjs/microservices': 8.3.1_b7a80f741951ca2d7e1e4c1cea193eef
+  '@nestjs/microservices': 8.3.1_bcefc6ecdf13e923b096531817f0ea5b
   '@nestjs/platform-express': 8.3.1_dc024985ab89eb73339eca509fad8031
+  redis: 3.1.2
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.4
@@ -851,7 +853,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.3.1_0a8b9973a45cbeaad6b0063efdcaad84
-      '@nestjs/microservices': 8.3.1_b7a80f741951ca2d7e1e4c1cea193eef
+      '@nestjs/microservices': 8.3.1_bcefc6ecdf13e923b096531817f0ea5b
       '@nestjs/platform-express': 8.3.1_dc024985ab89eb73339eca509fad8031
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
@@ -866,7 +868,7 @@ packages:
       - encoding
     dev: false
 
-  /@nestjs/microservices/8.3.1_b7a80f741951ca2d7e1e4c1cea193eef:
+  /@nestjs/microservices/8.3.1_bcefc6ecdf13e923b096531817f0ea5b:
     resolution: {integrity: sha512-hFKiPQfZZJN1LPrVnrYNWqMB/wdfywhPF4283h+WGXChlTYnIIVBDb9nz5Brvwz8RkTEDT009AQ9EdJiKue6mQ==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -906,6 +908,7 @@ packages:
       '@nestjs/core': 8.3.1_10c1cfb4f19ab5d44be94194b642f486
       iterare: 1.2.1
       json-socket: 0.3.0
+      redis: 3.1.2
       reflect-metadata: 0.1.13
       rxjs: 7.5.4
       tslib: 2.3.1
@@ -972,7 +975,7 @@ packages:
       optional: 0.1.4
       '@nestjs/common': 8.3.1_0a8b9973a45cbeaad6b0063efdcaad84
       '@nestjs/core': 8.3.1_10c1cfb4f19ab5d44be94194b642f486
-      '@nestjs/microservices': 8.3.1_b7a80f741951ca2d7e1e4c1cea193eef
+      '@nestjs/microservices': 8.3.1_bcefc6ecdf13e923b096531817f0ea5b
       '@nestjs/platform-express': 8.3.1_dc024985ab89eb73339eca509fad8031
       tslib: 2.3.1
     dev: true
@@ -2158,6 +2161,11 @@ packages:
     resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=}
     engines: {node: '>=0.4.0'}
     dev: true
+
+  /denque/1.5.1:
+    resolution: {integrity: sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw==}
+    engines: {node: '>=0.10'}
+    dev: false
 
   /depd/1.1.2:
     resolution: {integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=}
@@ -4371,6 +4379,32 @@ packages:
     dependencies:
       resolve: 1.22.0
     dev: true
+
+  /redis-commands/1.7.0:
+    resolution: {integrity: sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==}
+    dev: false
+
+  /redis-errors/1.2.0:
+    resolution: {integrity: sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=}
+    engines: {node: '>=4'}
+    dev: false
+
+  /redis-parser/3.0.0:
+    resolution: {integrity: sha1-tm2CjNyv5rS4pCin3vTGvKwxyLQ=}
+    engines: {node: '>=4'}
+    dependencies:
+      redis-errors: 1.2.0
+    dev: false
+
+  /redis/3.1.2:
+    resolution: {integrity: sha512-grn5KoZLr/qrRQVwoSkmzdbw6pwF+/rwODtrOr6vuBRiR/f3rjSTGupbF90Zpqm2oenix8Do6RV7pYEkGwlKkw==}
+    engines: {node: '>=10'}
+    dependencies:
+      denque: 1.5.1
+      redis-commands: 1.7.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+    dev: false
 
   /reflect-metadata/0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
