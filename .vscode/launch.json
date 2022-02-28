@@ -9,6 +9,15 @@
             "restart": true,
             "remoteRoot": "/usr/app",
             "localRoot": "${workspaceRoot}/public"
+        },
+        {
+            "name": "Attach to Docker service: maps",
+            "type": "node",
+            "request": "attach",
+            "port": 58702,
+            "restart": true,
+            "remoteRoot": "/usr/app",
+            "localRoot": "${workspaceRoot}/maps"
         }
     ]
 }

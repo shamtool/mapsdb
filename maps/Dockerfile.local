@@ -1,0 +1,32 @@
+# Incorporates pnpm caching ideas from https://github.com/pnpm/pnpm/issues/3114
+
+FROM node:16-bullseye-slim
+
+# Needed by nodemon
+RUN apt update && apt install -y procps
+
+RUN npm install -g pnpm
+WORKDIR /usr/cache
+ENV NODE_ENV development
+
+# Store or use cache in virtual store if no deps have changed
+COPY ./pnpm-lock.yaml ./
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm fetch \
+    | grep -v "cross-device link not permitted\|Falling back to copying packages from store"
+
+COPY . ./
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm install --offline --frozen-lockfile \
+    | grep -v "cross-device link not permitted\|Falling back to copying packages from store"
+
+# Prepare runtime setup
+WORKDIR /usr/app
+
+EXPOSE 3001
+EXPOSE 9229
+
+# We link the cache at runtime after the fake node_modules volume has mounted; not at build time.
+CMD ln -s /usr/cache/node_modules/* /usr/app/node_modules \
+    ; ln -s /usr/cache/node_modules/.* /usr/app/node_modules \
+    ; pnpm run start:debug
