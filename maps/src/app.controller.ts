@@ -1,9 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
-  @Get()
-  getHello(): string {
-    return "Hello World";
+  @MessagePattern("hello")
+  getHello(n: number): string {
+    return "Hello World " + n;
   }
 }
