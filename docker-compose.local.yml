@@ -1,6 +1,8 @@
 version: "3"
 
 # Expose ports for debugging
+# 588xx - main ports
+# 587xx - debugging ports
 
 services:
   db:
@@ -29,4 +31,4 @@ services:
       - /usr/app/node_modules
     ports:
       - 58804:3001
-      - 9229:9229
+      - 58701:9229

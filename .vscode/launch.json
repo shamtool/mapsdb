@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Docker service: public",
+            "type": "node",
+            "request": "attach",
+            "port": 58701,
+            "restart": true,
+            "remoteRoot": "/usr/app",
+            "localRoot": "${workspaceRoot}/public"
+        }
+    ]
+}

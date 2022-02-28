@@ -20,8 +20,13 @@ RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
     pnpm install --offline --frozen-lockfile \
     | grep -v "cross-device link not permitted\|Falling back to copying packages from store"
 
-# We link the cache at runtime after the fake node_modules volume has mounted; not at build time.
+# Prepare runtime setup
 WORKDIR /usr/app
+
+EXPOSE 3001
+EXPOSE 9229
+
+# We link the cache at runtime after the fake node_modules volume has mounted; not at build time.
 CMD ln -s /usr/cache/node_modules/* /usr/app/node_modules \
     ; ln -s /usr/cache/node_modules/.* /usr/app/node_modules \
     ; pnpm run start:debug
