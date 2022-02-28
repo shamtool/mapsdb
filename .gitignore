@@ -39,3 +39,5 @@ lerna-debug.log*
 .env.*
 !.env.sample
 !.env.example
+# Contains host and ports configured with Docker Compose
+!.env.dockerconfig
