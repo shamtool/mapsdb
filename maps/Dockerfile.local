@@ -23,7 +23,6 @@ RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
 # Prepare runtime setup
 WORKDIR /usr/app
 
-EXPOSE 3001
 EXPOSE 9229
 
 # We link the cache at runtime after the fake node_modules volume has mounted; not at build time.

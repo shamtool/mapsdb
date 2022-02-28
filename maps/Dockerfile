@@ -23,6 +23,4 @@ COPY --from=builder /usr/app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /usr/app/node_modules ./node_modules
 COPY --from=builder /usr/app/dist ./dist
 
-EXPOSE 3001
-
 ENTRYPOINT ["npm", "run", "start:prod"]

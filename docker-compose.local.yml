@@ -32,3 +32,12 @@ services:
     ports:
       - 58804:3001
       - 58701:9229
+
+  maps:
+    build:
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./maps:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - 58702:9229
