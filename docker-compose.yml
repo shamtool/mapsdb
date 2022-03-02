@@ -9,7 +9,6 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_PASS}
-      MARIADB_DATABASE: mapsdb
 
   redis:
     image: redis:6.2-bullseye

@@ -1,8 +1,20 @@
-export default {
-  REDIS_URL: `redis://default:${process.env.REDIS_PASS}@${
+function intPipe(value: any) {
+  const result = parseInt(value);
+  if (isNaN(result)) {
+    throw new Error("Not an integer: " + value);
+  }
+  return result;
+}
+
+export const appConfig = {
+  // Redis
+  redisUrl: `redis://default:${process.env.REDIS_PASS}@${
     process.env.REDIS_HOST
   }:${process.env.REDIS_PORT ?? 6379}`,
-  MYSQL_HOST: process.env.DB_HOST,
-  MYSQL_PORT: process.env.DB_PORT ?? 3306,
-  MYSQL_PASS: process.env.DB_PASS,
+
+  // RDB
+  rdbHost: process.env.DB_HOST,
+  rdbPort: intPipe(process.env.DB_PORT) ?? 3306,
+  rdbPass: process.env.DB_PASS,
+  rdbUser: process.env.DB_USER ?? "root",
 };

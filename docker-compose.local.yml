@@ -10,12 +10,14 @@ services:
       - 58801:3306
 
   phpmyadmin:
-    image: phpmyadmin:fpm-alpine
+    image: phpmyadmin:latest
     depends_on:
       - db
     restart: always
     environment:
       PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: ${DB_PASS}
     ports:
       - 58802:80
 
